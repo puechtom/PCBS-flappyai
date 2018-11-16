@@ -6,11 +6,10 @@ from obstacle import Obstacle
 from bird import Bird
 
 class World(object):
-    def __init__(self):
+    def __init__(self, birds):
+        self.birds = birds
         self.obstacles = []
         self.add_obstacle()
-        self.birds = []
-        self.birds.append(Bird())
 
     def add_obstacle(self):
         self.obstacles.append(Obstacle())
@@ -62,7 +61,8 @@ class World(object):
         birds_alive = [bird for bird in self.birds if bird.alive]
         for bird in birds_alive:
             bird.draw(output)
-            bird.draw_features(output)
+            # bird.draw_features(output)
+            bird.draw_goal(output)
 
     def draw(self, output):
         self.draw_obstacles(output)

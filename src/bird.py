@@ -20,6 +20,7 @@ class Bird(pygame.sprite.Sprite):
                                 self.y-self.radius,
                                 self.radius,
                                 self.radius)
+        self.alive = True
 
     def jump(self, jump_speed=.2):
         self.vy -= jump_speed
@@ -40,7 +41,7 @@ class Bird(pygame.sprite.Sprite):
         pygame.draw.circle(output, self.color, (round(self.x), round(self.y)), self.radius)
 
     def get_features(self, obstacle):
-        self.obstaclex = obstacle.x
+        self.obstaclex = obstacle.x+obstacle.w/2
         self.obstacley = obstacle.y
         self.dist = self.obstaclex - self.x
         self.height = self.obstacley - self.y
@@ -48,3 +49,6 @@ class Bird(pygame.sprite.Sprite):
     def draw_features(self, output):
         pygame.draw.line(output, TEST_COLOR, (self.x, self.y), (self.obstaclex, self.y), 3)
         pygame.draw.line(output, TEST_COLOR, (self.x, self.y), (self.x, self.obstacley), 3)
+
+    def draw_goal(self, output):
+        pygame.draw.circle(output, TEST_COLOR, (round(self.obstaclex), round(self.obstacley)), 3)
