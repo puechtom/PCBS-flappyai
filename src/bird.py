@@ -2,6 +2,10 @@ import pygame
 from pygame.locals import *
 from constant import *
 import numpy as np
+from keras.models import Sequential
+from keras.layers import Dense
+
+# predictions = model.predict(data)
 
 class Bird(pygame.sprite.Sprite):
     def __init__(self, radius=round(H/30)):
@@ -21,6 +25,22 @@ class Bird(pygame.sprite.Sprite):
                                 self.radius,
                                 self.radius)
         self.alive = True
+        self.fitness_score = 0
+        self.obstaclex = 0
+        self.obstacley = 0
+        self.model = Sequential()
+        self.model.add(Dense(12,
+                             input_dim=2,
+                             kernel_initializer='uniform',
+                             activation='relu'))
+        self.model.add(Dense(8,kernel_initializer='uniform',activation='relu'))
+        self.model.add(Dense(1,kernel_initializer='uniform',activation='sigmoid'))
+        self.model.compile(optimizer='rmsprop',
+                           loss='binary_crossentropy',
+                           metrics=['accuracy'])
+
+    def fitness(self):
+        pass
 
     def jump(self, jump_speed=.2):
         self.vy -= jump_speed
@@ -45,6 +65,7 @@ class Bird(pygame.sprite.Sprite):
         self.obstacley = obstacle.y
         self.dist = self.obstaclex - self.x
         self.height = self.obstacley - self.y
+        return np.array([self.dist, self.height])
 
     def draw_features(self, output):
         pygame.draw.line(output, TEST_COLOR, (self.x, self.y), (self.obstaclex, self.y), 3)

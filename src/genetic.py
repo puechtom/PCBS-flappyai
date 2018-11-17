@@ -17,7 +17,7 @@ hud_background = pygame.Rect(0, H, W, HUD_H)
 class GeneticAlg(object):
     def __init__(self):
         self.birds = []
-        for i in range(3):
+        for i in range(1):
             self.birds.append(Bird())
         self.gen = 0
         self.best_score = 0
@@ -26,21 +26,26 @@ class GeneticAlg(object):
         world = World(self.birds)
         clock = pygame.time.Clock()
         done = False
-        c=0
+        c = 0
         while not done:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    done = True
+                    exit()
             if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-                done = True
+                exit()
             if len([bird for bird in world.birds if bird.alive])==0:
                 done = True
- 
+
             dt = clock.tick(60)
             screen.fill(BG_COLOR)
 
             c+=1
             score_surface = myfont.render("Score: {}".format(c), True, (0, 0, 0))
+
+            for bird in [bird for bird in world.birds if bird.alive]:
+                features = bird.get_features()
+                predictions = bird.model.predict(features)
+                print(predictions)
 
             if pygame.key.get_pressed()[pygame.K_SPACE]:
                 for bird in [bird for bird in world.birds if bird.alive]:
@@ -66,10 +71,14 @@ class GeneticAlg(object):
         if c > self.best_score:
             self.best_score = c
 
-    def get_fitness_score(self):
+    def fitness(self):
         pass
 
-    def mutate(self):
+    def evolve(self):
         self.gen += 1
         for bird in self.birds:
             bird.__init__()
+        def crossover(self):
+            pass
+        def mutate(self):
+            pass

@@ -61,8 +61,8 @@ class World(object):
         birds_alive = [bird for bird in self.birds if bird.alive]
         for bird in birds_alive:
             bird.draw(output)
-            # bird.draw_features(output)
-            bird.draw_goal(output)
+            bird.draw_features(output)
+            # bird.draw_goal(output)
 
     def draw(self, output):
         self.draw_obstacles(output)
