@@ -43,9 +43,17 @@ class GeneticAlg(object):
             score_surface = myfont.render("Score: {}".format(c), True, (0, 0, 0))
 
             for bird in [bird for bird in world.birds if bird.alive]:
-                features = bird.get_features()
-                predictions = bird.model.predict(features)
-                print(predictions)
+                obstacle = None
+                for obs in world.obstacles:
+                    if obs.x > bird.x:
+                        obstacle = obs
+                        break
+                if not obstacle is None:
+                    features = bird.get_features(world.obstacles[0])
+                    # print(f"features shape {features.shape}")
+                    # print(f"features {features}")
+                    # predictions = bird.model.predict(features)
+                    # print(predictions)
 
             if pygame.key.get_pressed()[pygame.K_SPACE]:
                 for bird in [bird for bird in world.birds if bird.alive]:
