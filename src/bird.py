@@ -25,7 +25,7 @@ class Bird(pygame.sprite.Sprite):
                                 self.radius,
                                 self.radius)
         self.alive = True
-        self.fitness_score = 0
+        self.score = 0
         self.obstaclex = 0
         self.obstacley = 0
         self.model = Sequential()
@@ -33,7 +33,7 @@ class Bird(pygame.sprite.Sprite):
                              input_dim=2,
                              kernel_initializer='uniform',
                              activation='relu'))
-        self.model.add(Dense(8,kernel_initializer='uniform',activation='relu'))
+        # self.model.add(Dense(8,kernel_initializer='uniform',activation='relu'))
         self.model.add(Dense(1,kernel_initializer='uniform',activation='sigmoid'))
         self.model.compile(optimizer='rmsprop',
                            loss='binary_crossentropy',
@@ -65,7 +65,7 @@ class Bird(pygame.sprite.Sprite):
         self.obstacley = obstacle.y
         self.dist = self.obstaclex - self.x
         self.height = self.obstacley - self.y
-        return np.array([self.dist, self.height])
+        return np.array([self.dist, self.height]).reshape((1,2))
 
     def draw_features(self, output):
         pygame.draw.line(output, TEST_COLOR, (self.x, self.y), (self.obstaclex, self.y), 3)
