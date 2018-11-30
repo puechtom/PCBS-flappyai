@@ -11,7 +11,7 @@ class Block(pygame.sprite.Sprite):
 class Obstacle(object):
     # TODO: kill block when out of the screen
 
-    def __init__(self, w=round(H/10), h=round(H/3), margin=round(H/10)):
+    def __init__(self, w=round(20), h=round(H/3), margin=round(H/10)):
         self.h = h
         self.w = w
         self.x = W+self.w
