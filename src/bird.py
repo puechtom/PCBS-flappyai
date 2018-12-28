@@ -2,13 +2,8 @@ import pygame
 from pygame.locals import *
 from constant import *
 import numpy as np
-# from keras.models import Sequential
-# from keras.layers import Dense
 import uuid
 
-# predictions = model.predict(data)
-
-# X = (hours studying, hours sleeping), y = score on test, xPredicted = 4 hours studying & 8 hours sleeping (input data for prediction)
 X = np.array(([2, 9], [1, 5], [3, 6]), dtype=float)
 y = np.array(([92], [86], [89]), dtype=float)
 xPredicted = np.array(([4,8]), dtype=float)
@@ -64,15 +59,6 @@ class Neural_Network(object):
         o = self.forward(X)
         self.backward(X, y, o)
 
-    def saveWeights(self):
-        np.savetxt("w1.txt", self.W1, fmt="%s")
-        np.savetxt("w2.txt", self.W2, fmt="%s")
-
-    # def predict(self):
-    #   print "Predicted data based on trained weights: "
-    #   print "Input (scaled): \n" + str(xPredicted)
-    #   print "Output: \n" + str(self.forward(xPredicted))
-
 class Bird(pygame.sprite.Sprite):
     def __init__(self, layers=None, radius=round(H/30)):
         pygame.sprite.Sprite.__init__(self)
@@ -95,16 +81,6 @@ class Bird(pygame.sprite.Sprite):
         self.score = 0
         self.obstaclex = 0
         self.obstacley = 0
-        # self.model = Sequential()
-        # self.model.add(Dense(12,
-        #                      input_dim=2,
-        #                      kernel_initializer='uniform',
-        #                      activation='relu'))
-        # # self.model.add(Dense(8,kernel_initializer='uniform',activation='relu'))
-        # self.model.add(Dense(1,kernel_initializer='uniform',activation='sigmoid'))
-        # self.model.compile(optimizer='rmsprop',
-        #                    loss='binary_crossentropy',
-        #                    metrics=['accuracy'])
         if layers is None:
             self.model = Neural_Network()
         else:
