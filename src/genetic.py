@@ -151,5 +151,7 @@ class GeneticAlg(object):
                 mutate(children)
             childrens.append(children)
 
+        new_birds += childrens
+
         del(self.birds)
         self.birds = new_birds
