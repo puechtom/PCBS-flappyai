@@ -1,6 +1,6 @@
 # Flappy Ai: A genetic algorithm approach
 
-![demo](https://i.imgur.com/qOK2TIC.mp4)
+![demo](https://i.imgur.com/qOK2TIC.gifv)
 
 The goal of this project was to try out neural networks with genetic algorithms. In order to do this, I choosed a flappy bird like game due to its simplicity of development. The aim is to implement little birds with really simple "brains" and let them try to go as far as possible in the virtual world. When all the birds are dead, we select the best ones, make them reproduce to create a new generation of bird and we start the process over again. After a few generation, thanks to natural selection principle, we should see some interesting behaviours appearing in the population and at each new generation, the birds should performs better.
 
