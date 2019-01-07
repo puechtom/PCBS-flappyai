@@ -59,7 +59,8 @@ class GeneticAlg(object):
                         bird.jump()
                     bird.score = c
                     bird.fitness = - abs(list(features[0])[0]) - abs(list(features[0])[1])
-                    bird.fit = c*100 - abs(list(features[0])[0])
+                    # bird.fit = c*100 - abs(list(features[0])[0])
+                    bird.fit = c*100 - abs(list(features[0])[1])
 
             if pygame.key.get_pressed()[pygame.K_SPACE]:
                 for bird in [bird for bird in world.birds if bird.alive]:
@@ -94,7 +95,7 @@ class GeneticAlg(object):
     def fitness(self):
         pass
 
-    def evolve(self, retain=.2, random=.05, mutation=.01):
+    def evolve(self, retain=.1, random=.05, mutation=.01):
         def crossover(bird1, bird2, k=1):
             b1_layers = bird1.get_layers()
             b2_layers = bird2.get_layers()
