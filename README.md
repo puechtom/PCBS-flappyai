@@ -8,11 +8,11 @@ The goal of this project was to try out neural networks with genetic algorithms.
 The virtual world is composed of obstacles and the birds have to avoid them in order to progress in the virtual world.
 
 Obstacles are composed of two parts, the top one and the bottom one. We can adjust the difficulty of the obstacles by changing three parameters:
-* the distance between the top and bottom parts
-* the distance between two obstacles
-* the range in which the hole in the obstacle can be placed
+1. the distance between the top and bottom parts
+2. the distance between two obstacles
+3. the range in which the hole in the obstacle can be placed
 <figure>
-    <img src='world.png' width="250" alt='missing'/>
+    <img src='world.png' width="350" alt='missing'/>
 </figure>
 
 ## 2. Birds
@@ -51,7 +51,46 @@ The crossover is the process used to create new birds from the best ones of the 
 
 Thus, the new bird (children) has weights corresponding of parts from his father and parts from his mother. Parents are selected randomly from the best birds of the previous generation.
 
+    def crossover(bird1, bird2, k=1):
+        b1_layers = bird1.get_layers()
+        b2_layers = bird2.get_layers()
+
+        b_layers = []
+        for layers in zip(b1_layers, b2_layers):
+            flatten_layer1 = layers[0].flatten()
+            flatten_layer2 = layers[1].flatten()
+            flatten_layers = [flatten_layer1, flatten_layer2]
+            length = len(flatten_layer1)
+            k_points = [0]
+            k_points += sorted(np.random.choice(range(0, length), k))
+            k_points.append(length)
+            choices = []
+            for i, (k1, k2) in enumerate(zip(k_points, k_points[1:])):
+                for n in range(k2-k1):
+                    choices.append(i%2)
+            b_layer = []
+            for i, c in enumerate(choices):
+                b_layer.append(flatten_layers[c][i])
+            b_layer = np.array(b_layer).reshape(layers[0].shape)
+            b_layers.append(b_layer)
+
+        bird = Bird()
+        bird.set_layers(b_layers)
+        return bird
+
 ### 3.3 Mutation
 In order to avoid being stuck in a sub optimal behaviour, we added mutation. Mutation is a process which randomly changes a weight of a new bird with a low probability. This random change may induce a completly new behavior which can be benefic. If it is, the mutated bird will be selected for the new generation and thus the mutation will spread through childrens.
 
+    def mutate(bird, k=1):
+        layers = bird.get_layers()
+        lengths = []
+        for layer in layers:
+            lengths.append(layer.shape[0]*layer.shape[1])
+        choice = np.random.randint(0, len(layers))
+        layer = layers[choice]
+        x = np.random.randint(0, layer.shape[0])
+        y = np.random.randint(0, layer.shape[1])
+        value = np.random.randn()
+        layers[choice][x][y] = value
+        bird.set_layers(layers)
 
