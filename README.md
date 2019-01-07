@@ -11,13 +11,15 @@ Obstacles are composed of two parts, the top one and the bottom one. We can adju
 * the distance between the top and bottom parts
 * the distance between two obstacles
 * the range in which the hole in the obstacle can be placed
-
+<figure>
+    <img src='world.png' width="250" alt='missing'/>
+</figure>
 
 ## 2. Birds
 Each bird has a small neural network which can be roughly assimilated to their "brain". This neural network is composed of 3 layers of neurons. The first layer is the input layer, the second layer is called the hidden layer and the third one is the output of the network.
 
 <figure>
-    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/600px-Colored_neural_network.svg.png' width="250" alt='missing' />
+    <img src='neuralnetwork.png' width="250" alt='missing' />
     <figcaption>© Wikipedia</figcaption>
 </figure>
 
@@ -43,7 +45,7 @@ As said earlier, we need to select the best birds of a given generation. In othe
 ### 3.2 Crossover
 The crossover is the process used to create new birds from the best ones of the previous generation. A bird is only characterized by their weights, therefore in order to create a bird (children) from two other birds (parents), we need to find a way to mixup the weights of the parents. In this example, we used a k-points crossover process:
 <figure>
-    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/TwoPointCrossover.svg/452px-TwoPointCrossover.svg.png' width="350" alt='missing' />
+    <img src='crossover.png' width="350" alt='missing' />
     <figcaption>© Wikipedia</figcaption>
 </figure>
 
