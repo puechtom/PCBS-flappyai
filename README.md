@@ -2,12 +2,12 @@
 
 ![](demo.gif)
 
-The goal of this project was to try out neural networks with genetic algorithms. In order to do this, I choosed a flappy bird like game due to its simplicity of development. The aim is to implement little birds with really simple "brains" and let them try to go as far as possible in the virtual world. When all the birds are dead, we select the best ones, make them reproduce to create a new generation of bird and we start the process over again. After a few generation, thanks to natural selection principle, we should see some interesting behaviours appearing in the population and at each new generation, the birds should performs better.
+The goal of this project was to try out neural networks with genetic algorithms. In order to do this, I choosed a flappy bird like game due to its simplicity of development. The aim is to create little birds with really simple "brains" and let them try to go as far as possible in the virtual world. When all the birds are dead, we select the best ones, make them reproduce to create a new generation of birds and we start the process over again. After a few generation, thanks to natural selection principle, we should see some interesting behaviours appearing in the population and at each new generation, the birds should perform better.
 
 ## 1. Virtual world
 The virtual world is composed of obstacles and the birds have to avoid them in order to progress in the virtual world.
 
-Obstacles are composed of two parts, the top one and the bottom one. We can adjust the difficulty of the obstacles by changing three parameters:
+Obstacles are composed of two parts, the top one and the bottom one. We can adjust the difficulty of the level by changing three parameters:
 1. the distance between the top and bottom parts
 2. the distance between two obstacles
 3. the range in which the hole in the obstacle can be placed
@@ -16,7 +16,7 @@ Obstacles are composed of two parts, the top one and the bottom one. We can adju
 </figure>
 
 ## 2. Birds
-Each bird has a small neural network which can be roughly assimilated to their "brain". This neural network is composed of 3 layers of neurons. The first layer is the input layer, the second layer is called the hidden layer and the third one is the output of the network.
+Each bird has a small neural network which can be very roughly assimilated to their "brain". This neural network is composed of 3 layers of neurons. The first layer is the input layer, the second layer is called the hidden layer and the third one is the output of the network.
 
 <figure>
     <img src='neuralnetwork.png' width="250" alt='missing' />
@@ -25,7 +25,11 @@ Each bird has a small neural network which can be roughly assimilated to their "
 
 For our network, we have only 2 input neurons, 6 neurons for the hidden layer and 1 output neuron.
 ### 2.1 Input layer
-The input layer is composed of only 2 neurons. It means that each bird have only access to 2 features and have to make decision based only on this 2 features. The first feature represents the distance between the bird and the next obstacle. The second is the difference of height between the bird and the center of the hole of the next obstacle.
+The input layer is composed of only 2 neurons. It means that each bird have only access to 2 inputs (aka features) and have to make decision based only on this 2 features. The first feature represents the distance between the bird and the next obstacle. The second is the difference of height between the bird and the center of the hole of the next obstacle.
+
+<figure>
+    <img src='features.png' width="350" alt='missing' />
+</figure>
 
 ### 2.2 Hidden layer
 The number of hidden layers and neurons per layer is variable. It depends on the complexity of the problem to solve, however the more layer and neurons, the more time to converge will be necessary. Thus, for this example we choose to use only 1 layer with 6 neurons and fully connected
