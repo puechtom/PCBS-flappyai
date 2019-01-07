@@ -50,6 +50,7 @@ As said earlier, we need to select the best birds of a given generation. In othe
     <img src='fitness.png' width="350" alt='missing' />
 </figure>
 <a href="https://www.codecogs.com/eqnedit.php?latex=\dpi{150}&space;fitness&space;=&space;\alpha&space;f_1&space;-&space;|f_2|" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\dpi{150}&space;fitness&space;=&space;\alpha&space;f_1&space;-&space;|f_2|" title="fitness = \alpha f_1 - |f_2|" /></a>
+
 For example, here, the pink bird will have a higher fitness score than the green one because they have the same value for the 1st feature but for the 2nd feature which is counted as negative, the green bird have a higher value.
 
 ### 3.2 Crossover
