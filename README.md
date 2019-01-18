@@ -107,3 +107,8 @@ In order to avoid being stuck in a sub optimal behaviour, we added mutation. Mut
         layers[choice][x][y] = value
         bird.set_layers(layers)
 
+## Resources
+Some worth mentioning resources:
+* https://nathanrooy.github.io/posts/2017-11-30/evolving-simple-organisms-using-a-genetic-algorithm-and-deep-learning/
+* https://www.askforgametask.com/tutorial/machine-learning-algorithm-flappy-bird/
+* https://lethain.com/genetic-algorithms-cool-name-damn-simple/
